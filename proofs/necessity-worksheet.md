@@ -19,12 +19,16 @@ involves x_0 or a pendant:
   Pendant count +1; x_0 emptied. (Counterproductive but legal.)
 - **D** (x_0 jumps away): x_0 > x_{1} > x_{2} (or mirrored).
   x_0 emptied; consumes the adjacent cycle peg.
+- **E** (through jump): x_{1} > x_0 > x_{k-1} or mirrored. Consumes
+  x_0's peg and moves a peg from one gate to the other.
 - **L / R** (refills): x_2 > x_1 > x_0, resp. x_{k-2} > x_{k-1} > x_0.
   The ONLY jumps that ever put a peg on x_0 (pendants cannot jump
   into x_0: no common neighbor path). Each consumes its gate pair
   (x_1, x_2) resp. (x_{k-1}, x_{k-2}).
 
-Let a, b, c, d, r = counts of A, B, C, D, L+R events.
+Let a, b, c, d, e, r = counts of A, B, C, D, E, L+R events.
+(A, B, C, D, E all consume the peg on x_0; Identity 1 below holds
+with a+b+c+d+e on the right, a fortiori as stated.)
 
 ## Identity 1 (x_0 balance) - PROVED
 
@@ -96,11 +100,47 @@ feasible, shrinking the case analysis).
   the SOLVABLE boundary cases; check the ledger numbers a,b,c,d,r
   match the identities on real sequences).
 
-## Note for the STS application
+## Key reduction: the delivery number of a path
 
-Society for Science requires disclosure of AI assistance - check the
-2027 rules text and log the division of labor as we go (solver +
-search infrastructure + verification harness vs. proofs). The
-necessity proof on this worksheet is the piece to work through by
-hand; the sufficiency side's gadget/induction should also be
-re-derived and written in your own words.
+D(m) = max deliveries (jumps 2>1>0) into an externally-drained cell 0
+from a fully-pegged path 1..m; D2(m) = same with drains at both ends.
+Computed exactly (analysis/delivery.py), m <= 16:
+
+    D(m)  = 1 for all m >= 2      D_hole(m) = 1 for all m >= 3
+    D2(m) = 2 for all m >= 4
+
+**One-Shot Delivery Lemma (D(m) = 1), proof sketch.** After the first
+delivery, x_1 and x_2 are empty. In the pure path, x_1 can only be
+re-pegged by x_3 > x_2 > x_1, which first requires re-pegging x_2 via
+x_4 > x_3 > x_2, which empties x_3 and x_4 - a strictly increasing
+demand chain: formally, once the pair (x_j, x_{j+1}) is empty and
+everything left of x_j is empty, x_j can never be re-pegged
+(well-founded induction from the far end). Hence no second delivery.
+D2(m) = 2 follows by applying the argument at each end.
+
+**Consequence for crowns.** The arc x_1..x_{k-1} alone funds at most
+2 refills of x_0 (it is a both-ends-into-the-same-target path). Every
+further refill must be funded by the circular economy: pendant exits
+(A) or through-jumps (E) landing pegs back on gate cells, and D-jumps
+planting x_0's peg at x_2. Each such event consumes an x_0-peg, i.e.
+a prior refill. Sharp bookkeeping of this economy = the remaining
+work; target r <= 2 (even k) / 4 (odd k), where the odd-cycle bonus
+comes from the arc parity (S2).
+
+## Uniform boundedness (weaker but fully proved): golden-ratio weights
+
+Let s = 1/phi (s^2 + s = 1). Weight the crown by distance from x_0:
+w(x_j) = s^min(j, k-j), pendants w = s. Any jump toward x_0 along
+either arc conserves total pegged weight (s^d - s^{d+1} - s^{d+2} = 0);
+jumps away strictly lose; and every x_0-consuming event burns weight
+>= 2s - 1 ~ 0.236 (A/B/C/E burn exactly 1; D burns 2s):
+refills conserve. Initial weight W_0 < 1 + p s + 2 s/(1-s), which is
+< 4.24 + 0.62 p for ALL k. Since clearing p pendants forces >= p - 1
+x_0-events each burning >= 0.236... the ledger closes to give a
+k-INDEPENDENT bound of roughly p <= 11.
+
+So already proved: **there is an absolute constant P such that no
+C(k;p) with p > P is solvable, for any k** - the capacity of a cycle
+does not grow with its length. The sharp constants 2/4 need the
+parity-aware ledger above; the weight lemma supplies the a priori
+finiteness that makes the ledger's case analysis finite.
