@@ -59,6 +59,39 @@ odd cycle") should have a short strategy proof.
   placement probes (chain2 at distance d on C12: maxj =
   3,2,4,3,4,5,4 for d=0..6) show distance magnitude also matters.
 
+### Discoveries 2026-07-02 (autonomous session)
+
+**Pendant capacity table.** cap(P_m, i) = max pendants attachable at
+position i of P_m keeping solvability (any hole); computed m <= 20:
+- Even m: 0 1 1 2 2 0 0 0 ... — INTERIOR CAPACITY ZERO: one pendant
+  at depth >= 5 makes an even path unsolvable. Pendants tolerated only
+  within distance 4 of an end.
+- Odd m: 2 0 2 0 3 0 4 0 2 0 2 ... — zero at odd depths, peak of 4 at
+  exactly i = 6, settling to 2 for even i >= 8. Small-m exceptions
+  (e.g., cap(P_11, 4) = 5, cap(P_9, 2) = cap(P_9, 4) = 4).
+
+**Single-cluster reduction theorem (verified k <= 20, crowns k <= 27).**
+p*(k) = max_i cap(P_k, i) EXACTLY, for every k — including all the
+"exceptional" small k (k=11: crown 5 = cap(P_11,4) = 5; k=8: 3 =
+cap(P_8,3); k=5: 3 = cap(P_5,0)). For single clusters the cycle edge
+NEVER helps: C(k;p) solvable iff some spanning caterpillar solvable.
+
+**Refill calibration (analysis/crown_exact.py, pendant-symmetric
+solver).** Over ALL solving plays: refills of x_0 <= 2 (even k) and
+<= 4 (odd k; only k=13 attains 4, larger odd k use <= 3). Minimum
+refills at capacity: 1 (even) / 2 (odd, using the final-peg-on-pendant
+loophole). C(13;4) is freely solvable (every hole works) — unique.
+
+**Cycle-critical unicyclic graphs (NEW CONCEPT).** The master
+conjecture "unicyclic solvable iff some spanning tree solvable" is
+FALSE: 1,839 graphs with n <= 14 are solvable although ALL spanning
+trees are unsolvable (data/cycle_critical.json). Smallest: C_4 with
+one pendant on each of two opposite vertices (n=6). Counts by n:
+1, 6, 9, 12, 91, 126, 398, 1196 (n = 6..14, fast growth); both cycle
+parities occur (1097 even k, 742 odd k); NOT explained by
+one-parity-class attachment (39/1097). Characterizing cycle-critical
+unicyclic graphs is a new open problem originating in this project.
+
 ### Paper skeleton (realistic for Nov 5)
 1. Atlas (trees n<=18, unicyclic n<=14) + methodology + validations.
 2. Published-error correction (W(1,1), AJC 2012 Thm 2.2(ii)).

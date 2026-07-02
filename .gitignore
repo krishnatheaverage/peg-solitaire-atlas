@@ -2,3 +2,4 @@ data/trees_*.txt
 *.o
 solver
 __pycache__/
+data/spanning_test.txt
