@@ -34,17 +34,46 @@
 3. **Cycles** (verified in data, matches folklore): C_n solvable iff
    n even or n = 3; freely solvable when solvable (vertex-transitivity).
 
-### Next
-- Nail p*(k) with a wider probe (p up to ~10, k up to ~20; check
-  monotonicity in p; per-hole solvable sets).
-- Formulate the full crown characterization; test exhaustively against
-  the n<=14 census (426 unsolvable / 1121 total crown patterns).
-- Then: general unicyclic reduction ("hanging trees reduce to their
-  pendant-equivalent load"?) — test whether solvability of G depends
-  only on some reduced profile of each hanging tree.
-- Proof tools: explicit jump strategies for sufficiency; for necessity,
-  weight/pagoda functions (cf. Kreh 2024) and the mod-3/quaternion
-  weighting used for paths.
+### Probe results 2026-07-02 (analysis/probe_crowns.py)
+
+**THEOREM TARGET 1 (single-load crowns).** C(k;p), p >= 1 pendants at
+one vertex, is solvable iff p <= p*(k) where
+    p*(k) = 4 for odd k >= 13, 2 for even k >= 10,
+    exceptions k=3..12: 2, 1, 3, 2, 3, 3, 4, 2, 5, 2.
+Verified k <= 27 (p-monotone: solvable region is an interval in p).
+Eventual periodicity in k with period 2 = clean, provable-looking.
+
+**THEOREM TARGET 2 (pendants help odd cycles).** Bare C_k odd, k >= 5,
+is unsolvable, but C(k;p) IS solvable for 1 <= p <= 4 (k >= 13).
+Counterintuitive, quotable, and the p=1 case ("one pendant rescues any
+odd cycle") should have a short strategy proof.
+
+**Beyond single loads the structure is genuinely deep:**
+- Pair loads: odd separation tolerates 3-4 pendants/vertex, even 1-2.
+- Hanging trees are NOT additive pendant-loads. chain2 (P2) is a
+  HELPER: raises C12 capacity 2 -> 3, C13 4 -> 6; two chain2s -> 5 on
+  C12 (nonlinear stacking). cherry/star3 also helpers. chain-cherry
+  (P2 ending in 2 leaves) alone KILLS C12 (unsolvable with zero
+  pendants!) yet is a mild load on C13. Parity of delivered pegs
+  relative to the cycle bipartition is the visible mechanism, but
+  placement probes (chain2 at distance d on C12: maxj =
+  3,2,4,3,4,5,4 for d=0..6) show distance magnitude also matters.
+
+### Paper skeleton (realistic for Nov 5)
+1. Atlas (trees n<=18, unicyclic n<=14) + methodology + validations.
+2. Published-error correction (W(1,1), AJC 2012 Thm 2.2(ii)).
+3. Crown theorems: single-load characterization (Target 1) + odd-cycle
+   rescue (Target 2), proofs.
+4. Pair/parity results as far as proofs allow; helper phenomena as
+   data-backed conjectures with exact tables.
+5. Structural conjectures for full unicyclic characterization.
+
+### Proof tools
+- Sufficiency: explicit jump strategies (induction on k by 2, using the
+  eventual period-2 structure; "consume a far segment" lemmas).
+- Necessity: weight/pagoda functions (cf. Kreh 2024) and the
+  mod-3/quaternion weighting used for paths; bipartition counting for
+  even-cycle parity obstructions.
 
 ## Repo layout
 - gen/gen_trees.py, gen/gen_unicyclic.py — validated generators
