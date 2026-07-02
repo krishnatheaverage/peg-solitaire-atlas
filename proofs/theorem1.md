@@ -93,9 +93,51 @@ odd arc allows one extra parity-flip delivery per side). This is the
 main hand-proof to write; the k <= 12 exceptions arise where the two
 sides' arcs interact (small k), each verified by machine.
 
+## Sufficiency: COMPLETE proof structure (2026-07-02)
+
+**Purge Gadget (hand-proved).** Let H be any graph containing an induced
+path y - x_{k-2} - x_{k-1} - x_k - x_{k+1} where x_{k-1}, x_k, x_{k+1}
+have no other neighbors (a pendant path). From the full state with hole
+at x_k, the two jumps
+    x_{k-2} > x_{k-1} > x_k,   then   x_{k+1} > x_k > x_{k-1}
+leave x_k, x_{k+1} empty forever and the remaining graph
+H - {x_k, x_{k+1}} full with hole at x_{k-2}. Any solution of
+H - {x_k, x_{k+1}} from hole x_{k-2} then applies verbatim.
+Consequence: if P_k(i:p) is solvable with hole at x_{k-2}, then
+P_{k+2}(i:p) is solvable with hole at x_k. Induction on k in steps
+of 2 with fixed cluster position.
+
+**Base cases (machine-witnessed, hole always x_{k-2}; verified stable
+for ALL larger k of the same parity up to 25):**
+
+| family    | base graph | witness sequence |
+|-----------|-----------|------------------|
+| even p=1  | P_6(1:1)  | 2>3>4 0>1>2 5>4>3 3>2>1 6>1>0 |
+| even p=2  | P_6(3:2)  | 6>3>4 1>2>3 7>3>2 5>4>3 3>2>1 0>1>2 |
+| odd  p=1  | P_7(0:1)  | 3>4>5 1>2>3 7>0>1 6>5>4 4>3>2 2>1>0 |
+| odd  p=2  | P_7(2:2)  | 3>4>5 1>2>3 6>5>4 4>3>2 7>2>1 0>1>2 8>2>1 |
+| odd  p=3  | P_9(4:3)  | 5>6>7 3>4>5 8>7>6 6>5>4 9>4>3 2>3>4 0>1>2 10>4>3 2>3>4 11>4>3 |
+| odd  p=4  | P_13(6:4) | 9>10>11 7>8>9 13>6>7 4>5>6 2>3>4 0>1>2 14>6>5 5>4>3 2>3>4 12>11>10 10>9>8 8>7>6 15>6>5 4>5>6 16>6>5 |
+
+(Vertex convention: spine x_0..x_{k-1} = 0..k-1, pendants k, k+1, ...)
+
+**Position law (new observation).** The stable cluster positions are
+i = 2p - 1 on even spines and i = 2(p-1) on odd spines: each pendant
+requires exactly two spine vertices of "runway" on the short side.
+Moreover single-cluster caterpillars cap at p = 2 (even spine) and
+p = 4 (odd spine) - exactly the crown capacities p*(k). The cycle's
+extra edge adds nothing for large k; it does for small k (e.g., crown
+k=11 reaches p*=5 while no caterpillar exceeds 4).
+
+**Assembling sufficiency of Theorem 1** (k >= 13, p <= p*(k)): delete
+the cycle edge of C(k;p) at distance i (as above) from x_0, obtaining
+P_k(i:p); the corresponding family lemma gives solvability; the
+Inheritance Principle (BGH17 Prop 1(i)) transfers it to C(k;p).
+Exceptional rows k <= 12: finite list, machine-witnessed directly.
+
 ## Status
 - [x] Statement + all boundary instances machine-verified (k <= 27)
-- [x] Sufficiency architecture (inheritance + L1/L2) machine-validated
-- [ ] L1/L2 induction write-up
-- [ ] Necessity ledger argument write-up
+- [x] Sufficiency: gadget + 6 base witnesses + induction = complete
+      (needs prose write-up only)
+- [ ] Necessity ledger argument write-up (the remaining hand-math)
 - [ ] Exceptions table appendix (auto-generate from solver output)
