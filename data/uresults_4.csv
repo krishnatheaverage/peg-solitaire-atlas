@@ -1,0 +1,3 @@
+id,n,edges,solvable_mask,class,ps,fs,per_hole_min,per_hole_max,states
+0,4,0-1 1-2 2-0 2-3,7,S,1,2,1 1 1 2,2 2 1 2,11
+1,4,0-1 1-2 2-3 3-0,15,F,1,1,1 1 1 1,1 1 1 1,12
