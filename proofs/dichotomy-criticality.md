@@ -46,3 +46,26 @@ proposition (all positions, all even $m\le 20$).
   tested). This is the honest remaining gap.
 - Non-antipodal even-$d$ solvability for all $k$ (verified, not
   proved; Thm dcs covers antipodal only).
+
+## Invariant hunt outcome (2026-07-03) — NEGATIVE, informative
+
+Attempted to prove caterpillar necessity via a certificate. Results:
+- EXACT MODULAR INVARIANT (sum w mod q invariant): does NOT exist.
+  The system w(u)+w(v)=w(w) over all cherries has only the trivial
+  (zero) solution for q=2,3,5 (computed, all tested even-sep
+  caterpillars). Reason: a 2-pendant vertex x_i forces 2w(x_i)=0 and
+  all its neighbors equal, which via the Fibonacci spine recurrence
+  kills every nonzero weighting.
+- BIPARTITE 2-COLORING resource count: no separation-parity
+  constraint (each jump just decrements the middle's class; counts
+  alone don't obstruct).
+- BASIC PAGODA function: cannot rule out ALL final-peg targets with
+  a single non-negative phi (would need min_t phi(t) > sum, absurd).
+- MYHILL-NERODE: reachable sets of the even-sep caterpillar family
+  grow super-linearly (49,94,233,296,497 at m=8..16) = NOT
+  k-uniformly regular, same as the crown strip.
+CONCLUSION: the caterpillar even-sep necessity is the TWIN hard core
+of the crown periodicity; standard certificates provably/empirically
+fail. Remains an open conjecture (verified all positions m<=20).
+A proof, if it exists, needs a genuinely new idea (as does the crown
+strip). Recorded in paper's periodicity section.
