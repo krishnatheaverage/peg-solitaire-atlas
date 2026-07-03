@@ -77,10 +77,11 @@ cap(P_8,3); k=5: 3 = cap(P_5,0)). For single clusters the cycle edge
 NEVER helps: C(k;p) solvable iff some spanning caterpillar solvable.
 
 **Refill calibration (analysis/crown_exact.py, pendant-symmetric
-solver).** Over ALL solving plays: refills of x_0 <= 2 (even k) and
-<= 4 (odd k; only k=13 attains 4, larger odd k use <= 3). Minimum
-refills at capacity: 1 (even) / 2 (odd, using the final-peg-on-pendant
-loophole). C(13;4) is freely solvable (every hole works) — unique.
+solver; CORRECTED after B-move model fix).** At capacity the refill
+count is FORCED: every solving play uses exactly r = 2 (even k, p=2),
+r = 3 (odd k >= 13, p=4), r = 4 (k=11, p=5). [Earlier claim that
+C(13;4) is freely solvable was a bug artifact and is retracted;
+correct solvable holes: x1 x2 x5 x8 x11 x12 q.]
 
 **Cycle-critical unicyclic graphs (NEW CONCEPT).** The master
 conjecture "unicyclic solvable iff some spanning tree solvable" is
