@@ -145,12 +145,14 @@ Exceptional rows k <= 12: finite list, machine-witnessed directly.
       even k = 10..24 and odd k = 13..25 (crown_sym, 151 instances,
       all unsolvable from every hole; data/strip_verification.log);
       exceptions k <= 12 verified earlier (probe_crowns).
-- [ ] REMAINING GAP: strip for k >= 26 even / k >= 27 odd,
-      3 <= p <= 12 resp. 5 <= p <= 12. Two routes: (a) sharp refill
-      ledger (calibration now says refills are FORCED at capacity:
-      exactly 2 (even), 3 (odd k >= 13), 4 (k = 11)); (b) interface
-      automaton + Moore-Eppstein regularity => eventual periodicity
-      in k (see uniform-bound.md).
+- [~] REMAINING GAP: strip for k >= 26 even / k >= 27 odd. Now
+      SUBSTANTIALLY CLOSED in proofs/strip-closure.md: L1 (refills
+      r <= 10, all k, PROVED), L2 (gadget interface events <= 21,
+      PROVED), L3 (antipodal crossings <= 25, PROVED) => episode
+      decomposition L4; eventual periodicity in k follows from
+      Moore-Eppstein rationality (L5). Outstanding: explicit
+      preperiod/period extraction (automaton run or Excision Lemma
+      pattern enumeration) to connect to the verified window.
 - [ ] Exceptions table appendix (auto-generate from solver output)
 
 Corrections log: B-jump (pendant over x_0 into empty pendant slot)
