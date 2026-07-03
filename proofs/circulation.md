@@ -53,3 +53,17 @@ traverse all cycle edges. Concrete next angles:
   every caterpillar capacity at once yet fit the crown);
 - growth rate: 1, 6, 9, 12, 91, 126, 398, 1196 (n = 6..14) - does
   the critical fraction of unicyclic graphs converge?
+
+## Two-tier structure of the critical family (2026-07-02, session 3)
+
+Using ps (min terminal pegs) of every spanning tree:
+- 1810/1839 critical graphs have a spanning tree with ps = 2: the
+  cycle edge rescues exactly one peg of slack ("tier 1").
+- 29/1839 have ALL spanning trees stuck at ps >= 3 ("tier 2"): the
+  cycle edge rescues two or more pegs. Smallest tier-2 specimen
+  (n = 9): triangle 0-1-2 with pendants 3,4,5,6,7 at vertex 2 and a
+  chain 7-8 (C3, 5-cluster + one extended pendant).
+Tier-1 graphs may yield to a "2-solvable + terminal-adjacency" style
+analysis (though the naive version was falsified: the two stuck pegs
+usually do NOT sit at the deleted edge's endpoints - only 5/28);
+tier 2 is the hard core of the characterization problem.
