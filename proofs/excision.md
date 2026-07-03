@@ -132,3 +132,31 @@ compressed jump), so its excision requires pairing with the later
 consumer of one landed peg; the cascade terminates at special events
 (bounded) or another chain. Enumerating cascade terminations is the
 one unfinished list. Everything else in Route B is proved.
+
+## ROUTE B REFUTED (2026-07-02, session 6) - important correction
+
+Pushing the H2/H3 analysis to completion exposed a fatal flaw in the
+block-choice premise. If a 6-cell window x_{a-2}..x_{a+3} receives NO
+interior landings, then its inner cells x_a, x_{a+1} can never be
+consumed: every jump consuming them (as jumper or middle) lands
+within the window. Hence EVERY far-half 6-window in a solving play
+needs interior landings or holds the final peg. Since consuming the
+far arc requires Theta(k) landings there (every sweep step lands a
+peg), the premise "imports into the far half are bounded" is FALSE -
+the weight ledgers bound antipodal crossings and near-antipode
+away-jumps, NOT total landings. (Sanity check that caught it: the
+false premise + this window argument would prove large solvable
+crowns impossible, contradicting p <= p* instances.)
+
+Consequences:
+- The Commutation Lemma stands (independent, true).
+- The "strengthened block choice" is RETRACTED.
+- Route B (elementary excision) collapses into Route A: excising two
+  cells from a long pure-1-D region while preserving interface
+  behavior IS the pumping lemma for the Moore-Eppstein transducer.
+  The automaton is not an alternative but the essential tool.
+
+Theorem 1's remaining gap is therefore exactly: construct/verify the
+interface automaton (strip-closure.md L5) and extract (N_p, T_p).
+Fourth model error caught by contradiction-testing; the discipline
+holds.
