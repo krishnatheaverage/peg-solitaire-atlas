@@ -491,17 +491,44 @@ vertices, solvable or not: $R=0$ in $7437$ cases, $R=1$ in $421$, and
 $R=2$ in exactly $13$, so the bound is both true and tight. The
 extremal cases are essentially unique in form: twelve of the thirteen
 are triangles carrying a heavy pendant cluster at one corner, and the
-last is a $C_8$ with two pendant pairs. This is no accident. If $G$
-is solvable and not cycle-critical it has a solvable spanning tree,
-so $R=0$; a positive rescue forces $G$ critical or unsolvable. And a
-triangle is $K_3$: its third edge lets the loaded corner be refilled
-across the clique, worth exactly two pegs when a large cluster is
-being cleared, which a spanning path cannot reproduce. Longer cycles
-give a smaller boost, which is why $2$ is the maximum. A general
-proof would bound the peg loss incurred when one deletes a cycle edge
-from an optimal play and replays; the loss is at most two in every
-critical instance we tested ($n\le 9$), with the triangle-plus-cluster
-family as the worst case.
+last is a $C_8$ with two pendant pairs. The triangle is $K_3$, whose
+third edge lets the loaded corner be refilled across the clique, worth
+two pegs when a large cluster is cleared; this is the natural
+candidate for a worst case.
+
+One direction is provable and pins down where the difficulty lies.
+Fix an optimal play $P$ of $G$ (ending with $r=\ps(G)$ pegs) and a
+cycle edge $e$. Replay $P$ greedily on $T=G-e$: process its jumps in
+order, keeping each that is legal in the current $T$-state and
+skipping the rest.
+
+\begin{lemma}[Skip identity]\label{lem:skip}
+The greedy replay ends with exactly $r+s_e$ pegs, where $s_e$ is the
+number of jumps it skips; and $s_e=0$ if $P$ never traverses $e$.
+Hence $R(G)\le\min_e s_e$, and $R(G)\le 0$ whenever some optimal play
+of $G$ omits a cycle edge.
+\end{lemma}
+
+\begin{proof}
+Both $G$ under $P$ and $T$ under the replay lose exactly one peg per
+executed jump; $G$ executes all $N$ jumps to reach $r$ pegs from
+$n{-}1$, and $T$ executes $N-s_e$, reaching $(n{-}1)-(N-s_e)=r+s_e$.
+Before the first skip the two states agree, so the first skipped jump
+must be one that uses $e$; if none does, there are no skips.
+\end{proof}
+
+In particular a positive rescue forces every optimal play to traverse
+every cycle edge --- for solvable $G$, exactly cycle-criticality.
+This does \emph{not} prove $R\le 2$, and instructively so: the greedy
+replay of a \emph{fixed} optimal play can cascade, and we have
+measured $\min_e s_e$ as large as $6$ while the true $R$ stayed at
+most $2$. The tree recovers the lost pegs with a play of its own that
+the inherited one does not see. So the honest state of the bound is
+this: verified and tight through $n=12$, reduced by
+Lemma~\ref{lem:skip} to controlling skips, but not closed, because
+inheritance from a single play is too lossy and the tree's native
+optimum must be used instead. We regard it as the most accessible of
+the paper's open problems, but it is open.
 
 The mechanism behind criticality and the caterpillar necessity is the
 same, and can be stated cleanly.

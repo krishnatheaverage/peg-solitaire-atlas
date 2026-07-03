@@ -82,3 +82,22 @@ provably $2$. Closing the cascade bound in general is open.
   heavy cluster. General proof open (skip-surgery cascade bound).
 - Caterpillar necessity: refill engine + pagoda tool in hand, but the
   parity closure is the crown strip's twin and stays open.
+
+## Skip-surgery: CLOSED as insufficient (2026-07-03, honest correction)
+
+Tested the greedy skip-replay of a FIXED optimal play across 88
+unicyclic graphs. Findings:
+- Skip identity CONFIRMED: final pegs = r + (skips), exactly. Clean
+  lemma (now Lemma "Skip identity" in the paper). Gives R<=0 when an
+  optimal play omits a cycle edge (=> positive rescue forces every
+  optimal play to use every cycle edge; for solvable G, criticality).
+- BUT min_e (skips) over a single optimal play reaches 6, while true
+  R stays <=2. So naive skip-surgery does NOT prove R<=2 -- the
+  inherited play is too lossy; the tree needs its OWN optimal play.
+- This RETRACTS the earlier optimism ("skeleton is there, damage <=2").
+  The <=2 seen before came from searching over MANY plays, not a fixed
+  one. The cascade is real.
+CONCLUSION: Rescue Bound remains a conjecture (verified+tight n<=12).
+The skip identity is the salvageable real result. Closing R<=2 needs
+control of the tree's native optima, not play inheritance -- harder
+than the "tractable skeleton" suggested. Recorded honestly.
