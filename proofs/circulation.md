@@ -131,3 +131,20 @@ no-permanent-dead-pair constraint. The induction increment for the
 antipodal family DC(k, k/2) is k -> k+4 (each arc +2); the gadget
 must lengthen both sweeps by one step each. Construction + proof =
 next session's target.
+
+## Even-side hole structure (2026-07-02, session 7): rich k-dependence
+
+Solvable starting holes of antipodal DC(k, k/2):
+  k=8 : {1,3,5,7} + all four pendants
+  k=12: ALL holes (freely solvable - special)
+  k=16: cycle distances {2,3,5,6} from either cluster, no pendants
+  k=20: distances {3,4,6,7}
+  k=24: distances {3,6,9} (multiples of 3!)
+No fixed-hole family exists (hole x_1 solvable at k=8,12 but NOT 16);
+no uniform k -> k+4 gadget can work as naively scoped. The hole-set
+sequence suggests (mod 12)-type periodicity. Consequences:
+(a) the even-side solvability proof needs per-residue families or the
+automaton; (b) eventual periods in k can be LARGE for multi-cluster
+objects (the single-cluster crown's period-2 is not generic), which
+is exactly why certified automata - not eyeballed stabilization -
+are required for closure claims.
