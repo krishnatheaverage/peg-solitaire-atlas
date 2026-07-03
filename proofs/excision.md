@@ -70,16 +70,38 @@ Remove cells x_a, x_{a+1}; x_{a-1} becomes adjacent to x_{a+2}.
        outside pegs and creates two outside pegs: net local
        neutrality suggests a swap rewrite; unfinished).
 
+## CORRECTION (2026-07-02, session 4)
+
+The S pattern is NOT a no-import history: its first jump lands at
+x_a, which requires x_a's original peg to have been consumed earlier
+by yet another touching jump. So S-blocks belong to the boundedly
+many import-blocks and are AVOIDED by block choice, not rewritten.
+The no-import trichotomy {H1}, {H2}, {H3L + H3R} (proved complete by
+the consumption-mode enumeration above) is the whole case list.
+
+**H1 context analysis.** H1's landed peg at x_{a+2} can only be
+consumed by (x_{a+2} > x_{a+3} > x_{a+4}) (jumper right; all other
+consumers of x_{a+2} land inside the block = import, excluded). So
+an H1 block extends into a rightward chain of H1-type jumps; the
+chain's INTERIOR blocks (x_b, x_{b+1}) have history {land at x_b
+from (x_{b-2} > x_{b-1} > x_b); exit via (x_b > x_{b+1} > x_{b+2})}
+and merge cleanly into the single C' jump
+(x_{b-2} > x_{b-1} > x_{b+2}), PROVIDED no interleaved jump touches
+x_{b-2}, x_{b-1}, x_{b+2} between the two chain steps (interference
+condition). Chain endpoints reach either the special zone (bounded,
+avoidable) or a leftward consumer (an S-flavored joint).
+
 ## Status: honest
 
-The sweep pattern (S) - empirically the dominant one in witnesses -
-excises cleanly modulo the interference condition. H1/H3 rewrites are
-unfinished; the choice argument ("enough blocks that some block's
-history is type S") needs a proof that far-half consumption in a
-solving play is sweep-like except boundedly often, which is plausible
-(sweeps are the only weight-conserving way to consume far arc) but
-not yet written. Machine support: check on witnesses for solvable
-crowns k = 16..24 that type-S blocks exist in every play sampled.
-
-This route stays elementary but needs one more working session; the
-automaton route (strip-closure.md L5) remains the alternative.
+Case list complete; the mid-chain merge is proved modulo the
+interference condition, which still needs either (i) a scheduling
+lemma (chain steps can be commuted to be time-adjacent: plausible
+via the standard exchange argument - independent jumps commute), or
+(ii) a counting argument avoiding interfered chains. H2/H3 isolated
+blocks remain genuinely unfinished. The exchange-commutation route
+looks most promising: jumps with disjoint 3-cell supports commute,
+so any play can be normalized so each chain runs consecutively; then
+every mid-chain block merges. Under that normalization the excision
+closes IF every far-half no-import block is mid-chain - the isolated
+H2/H3 cases must be shown absent or separately rewritten. One more
+session.
