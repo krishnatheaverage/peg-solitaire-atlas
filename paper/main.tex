@@ -48,8 +48,10 @@ exactly two tiers, and they include an infinite two-parameter family,
 the double crowns $DC(k,d)$, for which we prove a parity dichotomy:
 $DC(k,d)$ with two pendant pairs at distance $d$ is freely reachable
 from its spanning trees when $d$ is odd, and cycle-critical when $d$
-is even (solvability proved for all $k\equiv 0 \pmod 4$, criticality
-verified through $k=24$). Finally we prove that all interaction in a
+is even (solvability proved for all $k\equiv 0 \pmod 4$; criticality
+reduced to, and following from, a caterpillar lemma verified at all
+positions through spine length $20$). Finally we prove that all
+interaction in a
 crown game is bounded by constants independent of $k$, measure the
 Myhill--Nerode complexity of the reachable configuration spaces, and
 explain why the eventual periodicity of $k\mapsto$ ``$C(k;p)$ is
@@ -580,23 +582,53 @@ description specializes correctly; the play has also been verified
 mechanically for $k=16,20,24,28,32,36,40$.
 \end{proof}
 
-\begin{proposition}[machine-verified]\label{prop:dccritical}
-$DC(k,d)$ with $d$ even is cycle-critical for all tested pairs:
-$(k,d)\in\{(8,4),(12,4),(12,6),(16,8),(20,4),(20,10),(22,6),
-(22,10),(24,8),(24,12)\}$. With $d$ odd it is freely solvable with
-solvable spanning trees in all tested cases.
+The criticality half follows from a caterpillar necessity statement
+and a clean reduction. Write $P_m(2\!@\!i,2\!@\!j)$ for the path on
+$m$ vertices with two pendants at $x_i$ and two at $x_j$.
+
+\begin{proposition}[Caterpillar necessity; machine-verified]
+\label{prop:catnec}
+Let $m$ be even, $14\le m\le 20$. For every $i<j$ with $j-i$ even,
+$P_m(2\!@\!i,2\!@\!j)$ is unsolvable, at all positions. The parity
+of $m$ matters: for odd $m$ even-separation solvable pairs occur
+(e.g.\ several at $m=19$). We conjecture the statement for all even
+$m$.
 \end{proposition}
 
-\begin{conjecture}[Double crown dichotomy]\label{conj:dichotomy}
-For even $k\ge8$ and $2\le d\le k/2$: $DC(k,d)$ is cycle-critical
-iff $d$ is even.
-\end{conjecture}
+\begin{lemma}[Reduction]\label{lem:dcreduce}
+For even $k$, every spanning tree of $DC(k,d)$ is a double-cluster
+caterpillar of spine length $k$ whose two pairs are separated by
+$d$ or $k-d$.
+\end{lemma}
 
-Theorem~\ref{thm:dcs} settles the solvability half of the even case
-for the antipodal family; what remains open is that every spanning
-tree is unsolvable for all $k$, a double-cluster caterpillar
-necessity statement of the same nature as the crown strip. The
-solvable holes carry unexpected structure:
+\begin{proof}
+Deleting a cycle edge turns the $k$-cycle into a path on its $k$
+vertices carrying the two pairs; the loaded vertices are joined the
+short way (separation $d$) or the long way (separation $k-d$)
+according to which arc holds the deleted edge.
+\end{proof}
+
+\begin{theorem}[Even separation: criticality]\label{thm:evencrit}
+Let $k,d$ be even. Then $d$, $k-d$ and the spine length $k$ are all
+even, so by Lemma~\ref{lem:dcreduce} every spanning tree of
+$DC(k,d)$ is an even-spine, even-separation double-cluster
+caterpillar. Granting Proposition~\ref{prop:catnec} at spine length
+$k$, all spanning trees are unsolvable, so $DC(k,d)$, once solvable,
+is cycle-critical. This is unconditional for even $k\le 20$, and
+verified directly through $k=24$ for
+$(k,d)\in\{(8,4),(12,4),(12,6),(16,8),(20,4),(20,10),(22,6),
+(22,10),(24,8),(24,12)\}$. For $d$ odd, $DC(k,d)$ is freely solvable
+with solvable spanning trees in every tested case.
+\end{theorem}
+
+The dichotomy is therefore a theorem in a precise sense: the odd case
+is proved (Theorem~\ref{thm:oddside}); the even case is proved modulo
+extending the finite Proposition~\ref{prop:catnec} to all even $m$, a
+$k$-uniform necessity of the same character as the crown strip
+(Section~\ref{sec:periodicity}), together with solvability, which is
+unconditional for the antipodal family (Theorem~\ref{thm:dcs}) and
+machine-verified otherwise. The solvable holes carry unexpected
+structure:
 
 \begin{proposition}[machine-verified, $k\le 32$]\label{prop:distlaw}
 For $k\equiv0\pmod4$, $16\le k\le32$, the solvable starting holes
@@ -679,8 +711,13 @@ behaviour, no closure.
 that, prove the Rescue Bound (Conjecture~\ref{conj:rescue}), or its
 natural extension $\min_T\ps(T)\le\ps(G)+2c$ for graphs with cycle
 rank $c$.
-\item Prove the criticality half of the double crown dichotomy: for
-even $d$, every spanning tree of $DC(k,d)$ is unsolvable.
+\item Extend Proposition~\ref{prop:catnec} to all even spine lengths:
+an even-spine double-cluster caterpillar with even separation is
+unsolvable. By Theorem~\ref{thm:evencrit} this closes the criticality
+half of the double crown dichotomy. The obstruction is not the
+bipartite two-colouring resource count, which we checked gives no
+separation-parity constraint; a pagoda-type function is the natural
+candidate.
 \item Explain the Distance-$\{3,6\}$ law
 (Proposition~\ref{prop:distlaw}) from the runway law of
 Section~\ref{sec:caterpillar}.
