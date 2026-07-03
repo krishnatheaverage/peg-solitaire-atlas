@@ -170,3 +170,23 @@ k -> k+4 circulating gadget as step, plus the {3,6} necessity side
 3 and 6 echo the caterpillar position law (i = 2p-1 = 3 for p = 2)
 and the crown cluster position i = 6 for p = 4; likely the same
 runway mechanism.
+
+## Even-side solvability: THE FAMILY (2026-07-02, session 9)
+
+analysis/dc_family.py encodes the parametrized play for DC(k, k/2),
+hole x_3, k = 4t >= 16 (phases A-F; right-arc sweep grows one jump
+pair per +4, left-arc in/back-sweeps one jump each, cluster phases
+fixed). VERIFIED by exact legality-checked simulation at
+k = 16, 20, 24, 28, 32, 36, 40 - the last five are predictions, not
+extractions. This proves (modulo the phase-invariant prose, an
+induction on sweep length identical in kind to L1/L2):
+
+  LEMMA DC-S: DC(k, k/2) is solvable from hole x_3 for all
+  k = 4t >= 16.
+
+With small cases k = 8, 12 machine-witnessed, the SOLVABILITY half of
+the even-side dichotomy is complete. The CRITICALITY half (all
+spanning trees unsolvable, verified k <= 24) still needs the
+double-cluster caterpillar necessity argument for general k - the
+same genre as Theorem 1's strip, and presumably the same automaton
+will decide both.
