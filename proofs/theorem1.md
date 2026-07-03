@@ -142,7 +142,7 @@ Exceptional rows k <= 12: finite list, machine-witnessed directly.
 - [x] Necessity, p >= 13, ALL k: PROVED (proofs/uniform-bound.md,
       golden-ratio weights; bound p <= 5 phi + 4, i.e. p <= 12)
 - [x] Necessity strip p* < p <= 13: VERIFIED exhaustively for
-      even k = 10..24 and odd k = 13..25 (crown_sym, 151 instances,
+      even k = 10..30 and odd k = 13..31 (crown_sym, 211 instances,
       all unsolvable from every hole; data/strip_verification.log);
       exceptions k <= 12 verified earlier (probe_crowns).
 - [~] REMAINING GAP: strip for k >= 26 even / k >= 27 odd. Now
