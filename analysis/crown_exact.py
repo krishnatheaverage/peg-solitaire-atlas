@@ -67,9 +67,9 @@ def analyze(k, p):
                             ok = True
                             lo = l if lo is None else min(lo, l)
                             hi = h if hi is None else max(hi, h)
-            # B: pendant over x_0 into empty pendant
+            # B: pendant over x_0 into empty pendant slot (count unchanged)
             if j >= 1 and (p - j) >= 1:
-                s, l, h = reach(mask & ~1, j - 1)
+                s, l, h = reach(mask & ~1, j)
                 if s:
                     ok = True
                     lo = l if lo is None else min(lo, l)

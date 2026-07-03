@@ -13,8 +13,10 @@ involves x_0 or a pendant:
 - **A** (pendant exits): q_j > x_0 > x_{1 or k-1}. Needs peg at x_0,
   hole at the target cycle neighbor. Pendant count -1; x_0 emptied;
   one peg lands on the cycle.
-- **B** (pendant kills pendant): q_i > x_0 > q_j (q_j empty).
-  Pendant count -1; x_0 emptied.
+- **B** (pendant shuffle): q_i > x_0 > q_j (q_j empty). Pendant COUNT
+  UNCHANGED (the peg moves between slots); x_0 emptied. [Corrected
+  2026-07-02: an earlier draft wrongly counted B as -1; caught when
+  two independent solvers exploited the wrong model.]
 - **C** (cycle feeds a pendant): x_{1 or k-1} > x_0 > q_j.
   Pendant count +1; x_0 emptied. (Counterproductive but legal.)
 - **D** (x_0 jumps away): x_0 > x_{1} > x_{2} (or mirrored).
@@ -43,9 +45,9 @@ x_0 or at a pendant shift this by one; enumerate the three cases).
 
 ## Identity 2 (pendant balance) - PROVED
 
-    a + b - c = p - eps,  eps = [final peg is a pendant] in {0,1}.
-
-So a + b >= p - 1, hence (Identity 1) r >= p - 2 + (c + d) >= p - 2.
+    a - c = p - eps,  eps = [final peg is a pendant] in {0,1}
+(B does not change the pendant count). So a >= p - 1, hence
+(Identity 1) r >= p - 2 + (b + c + d) >= p - 2.
 
 ## Sub-claim S1 (gate supply) - TO PROVE  [the crux]
 
