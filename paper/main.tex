@@ -481,15 +481,54 @@ net usage can). Criticality is a statement about gross traversal,
 and its characterization is open. The data supports a clean bound.
 
 \begin{conjecture}[Rescue bound]\label{conj:rescue}
-For every unicyclic $G$,
-$\min_{T}\ \ps(T)\ \le\ \ps(G)+2$, the minimum over spanning trees:
-one extra edge rescues at most two pegs.
+For every unicyclic $G$, writing $R(G)=\min_T \ps(T)-\ps(G)$ over
+spanning trees $T$, one has $R(G)\le 2$: one extra edge rescues at
+most two pegs.
 \end{conjecture}
 
-Beyond the census, the conjecture survived targeted attack:
-three or more evenly spaced pendant pairs make the graph itself
-unsolvable rather than producing a deeper rescue, heavier clusters
-rescue nothing, and dense packings rescue one peg.
+This is machine-verified for every unicyclic graph on $n\le12$
+vertices, solvable or not: $R=0$ in $7437$ cases, $R=1$ in $421$, and
+$R=2$ in exactly $13$, so the bound is both true and tight. The
+extremal cases are essentially unique in form: twelve of the thirteen
+are triangles carrying a heavy pendant cluster at one corner, and the
+last is a $C_8$ with two pendant pairs. This is no accident. If $G$
+is solvable and not cycle-critical it has a solvable spanning tree,
+so $R=0$; a positive rescue forces $G$ critical or unsolvable. And a
+triangle is $K_3$: its third edge lets the loaded corner be refilled
+across the clique, worth exactly two pegs when a large cluster is
+being cleared, which a spanning path cannot reproduce. Longer cycles
+give a smaller boost, which is why $2$ is the maximum. A general
+proof would bound the peg loss incurred when one deletes a cycle edge
+from an optimal play and replays; the loss is at most two in every
+critical instance we tested ($n\le 9$), with the triangle-plus-cluster
+family as the worst case.
+
+The mechanism behind criticality and the caterpillar necessity is the
+same, and can be stated cleanly.
+
+\begin{lemma}[Refill necessity]\label{lem:refill}
+Let $v$ have exactly two pendant neighbours $p_1,p_2$. Any play that
+removes the pegs on both $p_1$ and $p_2$ contains a jump landing on
+$v$, occurring after a moment when $v$ is empty.
+\end{lemma}
+
+\begin{proof}
+A leaf $p_r$ is removed only as the jumper of a jump over its unique
+neighbour $v$ (it cannot be a middle, and it is never created). Such
+a jump needs $v$ pegged immediately before and leaves $v$ empty
+immediately after. Let $J_1$, then $J_2$, be the jumps removing
+$p_1,p_2$. After $J_1$ the vertex $v$ is empty; just before $J_2$ it
+is pegged; so some intervening jump lands on $v$, its middle a
+non-pendant neighbour of $v$.
+\end{proof}
+
+In a double-cluster caterpillar this forces both $x_i$ and $x_j$ to
+be refilled from the spine. The inter-cluster segment has
+$j-i-1$ vertices, odd exactly when the separation $j-i$ is even; that
+the two refills and the spine clearance cannot be reconciled on an
+odd interior segment is what Proposition~\ref{prop:catnec} asserts and
+what we cannot yet prove --- the same obstruction, on a path, as the
+crown refill ledger.
 
 \section{Double crowns}\label{sec:dc}
 
