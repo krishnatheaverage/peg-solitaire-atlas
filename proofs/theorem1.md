@@ -135,9 +135,27 @@ P_k(i:p); the corresponding family lemma gives solvability; the
 Inheritance Principle (BGH17 Prop 1(i)) transfers it to C(k;p).
 Exceptional rows k <= 12: finite list, machine-witnessed directly.
 
-## Status
+## Status (updated after uniform-bound + strip verification)
 - [x] Statement + all boundary instances machine-verified (k <= 27)
-- [x] Sufficiency: gadget + 6 base witnesses + induction = complete
+- [x] Sufficiency: gadget + 6 base witnesses + induction = COMPLETE
       (needs prose write-up only)
-- [ ] Necessity ledger argument write-up (the remaining hand-math)
+- [x] Necessity, p >= 13, ALL k: PROVED (proofs/uniform-bound.md,
+      golden-ratio weights; bound p <= 5 phi + 4, i.e. p <= 12)
+- [x] Necessity strip p* < p <= 13: VERIFIED exhaustively for
+      even k = 10..24 and odd k = 13..25 (crown_sym, 151 instances,
+      all unsolvable from every hole; data/strip_verification.log);
+      exceptions k <= 12 verified earlier (probe_crowns).
+- [ ] REMAINING GAP: strip for k >= 26 even / k >= 27 odd,
+      3 <= p <= 12 resp. 5 <= p <= 12. Two routes: (a) sharp refill
+      ledger (calibration now says refills are FORCED at capacity:
+      exactly 2 (even), 3 (odd k >= 13), 4 (k = 11)); (b) interface
+      automaton + Moore-Eppstein regularity => eventual periodicity
+      in k (see uniform-bound.md).
 - [ ] Exceptions table appendix (auto-generate from solver output)
+
+Corrections log: B-jump (pendant over x_0 into empty pendant slot)
+leaves the pendant COUNT unchanged; an earlier model wrongly used -1,
+briefly poisoning the symmetric solvers and one identity (caught by
+cross-implementation disagreement + witness simulation, 2026-07-02).
+The claim "C(13;4) is freely solvable" was an artifact of that bug and
+is RETRACTED: correct solvable holes are x1 x2 x5 x8 x11 x12 q.

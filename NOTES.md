@@ -113,3 +113,13 @@ unicyclic graphs is a new open problem originating in this project.
 - src/solver.cpp — exact solver (shared-memo DAG search, per-hole stats)
 - analysis/verify_published.py — 122-case test vs published theorems
 - data/results_N.csv (trees), data/uresults_N.csv (unicyclic)
+
+### Cycle-critical mechanism (2026-07-02, session 2)
+Falsified: "critical graphs = spanning tree ends with pegs at the
+deleted edge's endpoints" (only 5/28 at n<=10). The real mechanism,
+visible in the smallest specimen (C4 + opposite pendants, witness
+4>1>0 3>0>1 1>2>3 5>3>2): the solving play CIRCULATES — every cycle
+edge is used as a jump path in one rotational flow, so no single edge
+deletion survives. Characterizing cycle-critical unicyclic graphs
+remains open; next angle: invariants of the rotation (winding number
+of the peg flow?).
