@@ -90,3 +90,27 @@ strategy + purge induction on k (machinery of theorem1.md);
 caterpillars P_k(2@i, 2@j), j - i = d even (capacity ledger /
 verified table + excision-style induction);
 (c) the odd-d side via inheritance from a solvable caterpillar.
+
+## Dichotomy proof status (2026-07-02, session 5)
+
+ODD SIDE - PROOF COMPLETE for d = 3, 5, 7 (modulo prose):
+Lemma D_d: the double-cluster caterpillar P_k(2@0, 2@d) is solvable
+with hole at x_{k-2}, for all even k >= 2d+2. Base case machine-
+witnessed; induction k -> k+2 by the Purge Gadget (theorem1.md);
+deleting cycle edge (x_{k-1}, x_0) of DC(k,d) leaves exactly this
+caterpillar, so Inheritance gives DC(k,d) solvable AND not critical.
+Same proof scheme works for every odd d (base case is a finite check
+per d). Bonus parity law observed: P_k(2@i, 2@i+d), d odd, is
+hole-x_{k-2}-solvable iff i is EVEN (all tested k).
+
+EVEN SIDE - verified at 10 pairs (k,d): (8,4) (12,4) (12,6) (16,8)
+(20,4) (20,10) (22,6) (22,10) (24,8) (24,12): ALL cycle-critical.
+Proof obligations: (a) DC(k,d) solvable - needs a CYCLE-NATIVE
+induction (inheritance is impossible for critical graphs by
+definition; the caterpillar purge gadget kills circulation, so a
+circulating gadget consuming 2 far cells while re-visiting them is
+required - note: in any solving play of a critical graph, no adjacent
+cycle pair may become permanently dead, since the remaining play
+would embed in a spanning tree); (b) every spanning tree unsolvable =
+necessity for P_k(2@i, 2@j) with even separation - the pair-parity
+ledger. Both are scoped; neither is done.

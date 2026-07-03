@@ -105,3 +105,30 @@ every mid-chain block merges. Under that normalization the excision
 closes IF every far-half no-import block is mid-chain - the isolated
 H2/H3 cases must be shown absent or separately rewritten. One more
 session.
+
+## Commutation Lemma + strengthened block choice (2026-07-02, session 5)
+
+**Commutation Lemma (PROVED).** If consecutive jumps J1, J2 in a play
+have disjoint 3-cell supports, swapping them preserves legality and
+all subsequent states. Proof: legality of a jump depends only on the
+contents of its own support; disjointness means neither changes the
+other's support; the combined effect is the same multiset update.
+
+**Strengthened choice (PROVED).** Import-blocks are boundedly many
+(antipode-weight budget), special-touched blocks likewise, so for k
+large, all but an absolute constant number of far-half 2-blocks have
+an import-free 3-block NEIGHBORHOOD. For such a block, no jump lands
+on x_{b-2}..x_{b+3} at any time, and (by the Commutation Lemma) the
+jumps touching the neighborhood can be normalized to be consecutive.
+Under this normalization the H1 mid-chain merge
+(x_{b-2} > x_{b-1} > x_b) + (x_b > x_{b+1} > x_{b+2})  ==>
+(x_{b-2} > x_{b-1} > x_{b+2})
+is sound with no interference condition.
+
+**Remaining (one case family).** Isolated H2/H3 blocks with
+import-free neighborhoods: the H3 pair consumes two outside pegs and
+creates two outside pegs (a "+1 peg mismatch" against any single
+compressed jump), so its excision requires pairing with the later
+consumer of one landed peg; the cascade terminates at special events
+(bounded) or another chain. Enumerating cascade terminations is the
+one unfinished list. Everything else in Route B is proved.
