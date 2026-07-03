@@ -49,3 +49,28 @@ SOUNDNESS OBLIGATION (the one theorem to prove for certification):
    statement against the k <= 31 verification data.
 5. Write the soundness proof of F (the Markov property) - the only
    hand-mathematics left in Theorem 1.
+
+## Empirical Myhill-Nerode measurement (2026-07-03): the wall is real
+
+Exact reachable-set computation for C(k;3), all start holes, with
+residual counts (= minimal DFA size lower bounds) per pendant count:
+
+  linear encoding (x_0 x_1 ... x_{k-1}):
+    k=10: max 41   k=12: 93   k=14: 186   k=16: 308
+  interleaved outward encoding (x_0, x_1, x_{k-1}, x_2, x_{k-2}, ...):
+    k=10: 43   k=12: 97   k=14: 197   k=16: 346   k=18: 479
+
+Residual complexity grows super-linearly in k under both natural
+encodings: the reachable languages are NOT k-uniformly regular.
+Consequences:
+- Naive regular model checking (learn DFA + closure check) cannot
+  certify the strip: no small uniform invariant exists in these
+  encodings.
+- This does not contradict Moore-Eppstein (their regularity concerns
+  solvable configurations of undriven paths) and does not make S(k)
+  aperiodic - but it shows the driven-boundary extension needs a
+  genuinely new idea (different abstraction, non-regular invariant,
+  or a direct combinatorial argument).
+- "Is crown solvability eventually periodic in cycle length?" is
+  hereby promoted to the project's deepest open problem, now with
+  quantitative evidence for its difficulty.
