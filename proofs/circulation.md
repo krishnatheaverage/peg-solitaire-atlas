@@ -114,3 +114,20 @@ cycle pair may become permanently dead, since the remaining play
 would embed in a spanning tree); (b) every spanning tree unsolvable =
 necessity for P_k(2@i, 2@j) with even separation - the pair-parity
 ledger. Both are scoped; neither is done.
+
+## Even-side witnesses and gadget scoping (2026-07-02, session 6)
+
+DC(8,4), hole x_1:  8>0>1 2>1>0 9>0>1 4>3>2 2>1>0 6>5>4 10>4>5
+                    0>7>6 6>5>4 11>4>3
+DC(12,6), hole x_0: 2>1>0 12>0>1 4>3>2 6>5>4 8>7>6 14>6>5 4>5>6
+                    15>6>7 10>11>0 13>0>11 2>1>0 0>11>10 10>9>8 8>7>6
+
+Mechanism: (i) x_0's cluster is cleared by pendant-exit/refill
+alternation; (ii) the inter-cluster arc is consumed by a sweep
+whose front absorbs the second cluster's pendant exits; (iii) the
+second arc is consumed with exactly one pass through the closing
+edge (the circulation; e.g. 0>7>6 in DC(8,4)). Consistent with the
+no-permanent-dead-pair constraint. The induction increment for the
+antipodal family DC(k, k/2) is k -> k+4 (each arc +2); the gadget
+must lengthen both sweeps by one step each. Construction + proof =
+next session's target.
