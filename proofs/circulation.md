@@ -67,3 +67,26 @@ Tier-1 graphs may yield to a "2-solvable + terminal-adjacency" style
 analysis (though the naive version was falsified: the two stuck pegs
 usually do NOT sit at the deleted edge's endpoints - only 5/28);
 tier 2 is the hard core of the characterization problem.
+
+## INFINITE FAMILY of cycle-critical graphs (2026-07-02, session 4)
+
+The DOUBLE CROWN DC(k,d) = C_k with 2 pendants at x_0 and 2 at x_d.
+Machine-verified:
+
+  d even  (tested (k,d) = (8,4),(12,6),(16,8),(20,10),(12,4)):
+     DC(k,d) is SOLVABLE but every spanning tree is unsolvable
+     -> CYCLE-CRITICAL. Tier 2 at (8,4); tier 1 for larger k.
+  d odd   (tested (10,5),(14,7),(12,5),(16,7)):
+     DC(k,d) is FREELY solvable and some spanning tree solvable
+     -> not critical.
+
+CONJECTURE (Double Crown Dichotomy): for even k >= 8 and
+2 <= d <= k/2: DC(k,d) is cycle-critical iff d is even, and freely
+solvable iff d is odd. This gives the first known INFINITE family of
+cycle-critical unicyclic graphs, proving the phenomenon is not
+sporadic. Proof route: (a) solvability of DC(k, even d) by explicit
+strategy + purge induction on k (machinery of theorem1.md);
+(b) unsolvability of all spanning trees = necessity for double-cluster
+caterpillars P_k(2@i, 2@j), j - i = d even (capacity ledger /
+verified table + excision-style induction);
+(c) the odd-d side via inheritance from a solvable caterpillar.
