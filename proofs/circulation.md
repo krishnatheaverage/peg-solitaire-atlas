@@ -148,3 +148,25 @@ automaton; (b) eventual periods in k can be LARGE for multi-cluster
 objects (the single-cluster crown's period-2 is not generic), which
 is exactly why certified automata - not eyeballed stabilization -
 are required for closure claims.
+
+## The Distance-{3,6} Law (2026-07-02, session 8)
+
+Two-cluster symmetric solver (src/dc_sym.cpp, validated against the
+explicit solver at k = 8..24) extended the hole sets to k = 28, 32:
+  k=28: {3,6,8,11,17,20,22,25}   k=32: {3,6,10,13,19,22,26,29}
+
+LAW (verified k = 16, 20, 24, 28, 32): the solvable holes of
+DC(k, k/2) are EXACTLY the cycle positions at distance
+{3, 6, k/2-6, k/2-3} from either cluster. The apparent mod-12
+structure was this fixed set self-overlapping at small k. Exceptions:
+k=12 freely solvable (superset), k=8 degenerate ({1,3,5,7}+pendants).
+
+Consequence: hole x_3 is solvable for ALL tested k >= 16, so a
+FIXED-hole k -> k+4 induction family exists after all (the earlier
+"no fixed-hole family" claim tested only x_1 and is superseded).
+Even-side proof plan restored: witness at k=16 hole x_3 as base,
+k -> k+4 circulating gadget as step, plus the {3,6} necessity side
+(why exactly distances 3 and 6?) as the remaining mystery - note
+3 and 6 echo the caterpillar position law (i = 2p-1 = 3 for p = 2)
+and the crown cluster position i = 6 for p = 4; likely the same
+runway mechanism.
