@@ -190,3 +190,31 @@ spanning trees unsolvable, verified k <= 24) still needs the
 double-cluster caterpillar necessity argument for general k - the
 same genre as Theorem 1's strip, and presumably the same automaton
 will decide both.
+
+## The Rescue Bound Conjecture (2026-07-03)
+
+Define the cycle rescue of unicyclic G: R(G) = min_T ps(T) - ps(G)
+over spanning trees T. Evidence:
+- All 52,021 solvable unicyclic graphs n <= 14: min tree ps <= 3,
+  i.e. R <= 2 (tiers ARE the levels R = 1, 2; no tier 3 exists).
+- Multi-cluster probes: 3+ equally-spaced even 2-clusters make G
+  itself unsolvable (ps >= 2) with R <= 2 in every case; heavier
+  clusters give R = 0; odd spacings solve (R = 0); dense even
+  packings give R = 1.
+
+CONJECTURE (Rescue Bound): for every unicyclic graph G,
+    min_T ps(T)  <=  ps(G) + 2.
+"One extra edge rescues at most two pegs." Would explain the two-tier
+structure as the complete classification. Natural strengthening to
+test later: for G with c independent cycles, rescue <= 2c?
+
+## Automaton status note (2026-07-03)
+
+Attempted implementable formulations (event-sequence behavior sets,
+antipodal crossing-sequence transfer, peg-block abstractions) all
+reduce to extending Moore-Eppstein regularity to DRIVEN-BOUNDARY
+1-D solitaire (arms start full; all activity injected at ends).
+That extension is research-grade, beyond a build session; recorded
+in proofs/automaton-spec.md as the precise open instrument. Theorem 1
+stands: proved except the strip for k >= 32 (verified through 31),
+whose closure awaits exactly this tool.
