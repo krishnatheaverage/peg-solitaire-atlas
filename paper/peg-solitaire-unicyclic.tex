@@ -480,7 +480,7 @@ cycle edge from a solvable one.
 \begin{proposition}[machine-verified]\label{prop:critical}
 Exactly $1{,}839$ of the $52{,}021$ solvable unicyclic graphs on
 $n\le 14$ vertices are cycle-critical, with counts
-$1,6,9,12,91,126,398,1196$ for $n=6,\dots,14$. The smallest is
+$1,0,6,9,12,91,126,398,1196$ for $n=6,\dots,14$. The smallest is
 $C_4$ with one pendant on each of two opposite vertices. For
 $1{,}810$ of them the best spanning tree strands exactly two pegs;
 for the remaining $29$, every spanning tree strands at least three.
@@ -836,8 +836,10 @@ regard closing either as the main problem left open by this work.
 \item Characterize the cycle-critical unicyclic graphs. Theorem~\ref{thm:rescue}
 shows the rescue $\min_T\ps(T)-\ps(G)$ is unbounded, so no constant
 bound holds; what graph parameter controls it? For $T(q)$ the rescue
-is $\Theta(q)$, half the maximum pendant load, which suggests a bound
-in terms of the largest cluster relative to the cycle.
+is $q-2$, linear in the per-vertex cluster size, and the follow-up
+data (rescue notes in the repository) point to the balance of the
+three clusters, $b+c-a$ for a loaded triangle, as the governing
+quantity.
 \item Extend Proposition~\ref{prop:catnec} to all even spine lengths:
 an even-spine double-cluster caterpillar with even separation is
 unsolvable. By Theorem~\ref{thm:evencrit} this closes the criticality
