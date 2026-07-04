@@ -98,12 +98,19 @@ all a>=b>=c with 3+a+b+c<=22. This answers the "what parameter
 controls R" question: the excess (b+c-a) of the two smaller clusters
 over the largest.
 
-**Uniform cycles C_k(q)** (q pendants at every vertex of C_k). Only
-the TRIANGLE rescues: R(C_3(q)) = q-2 (unbounded), but R(C_k(q)) = 0
-for k = 4,5,6,7 (all tested q). Reason: deleting a triangle edge
-leaves the length-3 caterpillar P_3(q,q,q) where the single even-class
-non-leaf (the middle) is a bottleneck; for k>=4 the spanning
-caterpillar P_k(q,...,q) has >=2 even non-leaves, no bottleneck, and
-is solvable, so R=0. (Being an odd cycle is NOT sufficient: C_5, C_7
-are odd yet rescue 0. The triangle is special as the shortest cycle /
-K_3, not merely as an odd cycle.)
+**Uniform cycles C_k(q)** (q pendants at every vertex of C_k).
+CORRECTED claim (an earlier "only the triangle rescues" was FALSE,
+caught by re-running at larger q): rescue occurs for larger cycles
+too, but at a q-THRESHOLD that grows with the cycle length k. Data:
+  - C_3(q): rescues at q>=3, R=q-2 (unbounded, proved).
+  - C_5(q): R=0 for q<=3, but R=1 at q=4 (n=25) -- so C_5 DOES rescue.
+  - C_4(q): R=0 through q=5 (n=24); threshold not yet reached (even
+    cycle -- may behave differently, unresolved).
+So the triangle is NOT unique; it merely has the LOWEST rescue
+threshold. Mechanism (ledger): the spanning caterpillar P_k(q,...,q)
+has ~k/2 even-class non-leaves, so the bottleneck (hence rescue) only
+appears once q is large enough relative to k; the triangle's tree
+P_3 has a single even non-leaf, so it bottlenecks at the smallest q.
+OPEN: is R(C_k(q)) unbounded for each fixed k>=4 as q->infinity?
+(compute-limited beyond n~25). Lesson reinforced YET AGAIN: do not
+claim "unique/only" from small-parameter data.
