@@ -44,15 +44,18 @@ tolerated on a long path only at spine position $2p-1$ (even paths)
 or $2(p-1)$ (odd paths). We then isolate the graphs responsible for
 the failure of a natural reduction: call a solvable unicyclic graph
 \emph{cycle-critical} if every spanning tree is unsolvable. There
-are $1{,}839$ such graphs on at most $14$ vertices, they come in
-exactly two tiers, and they include an infinite two-parameter family,
-the double crowns $DC(k,d)$, for which we prove a parity dichotomy:
+are $1{,}839$ such graphs on at most $14$ vertices, and they include an
+infinite two-parameter family, the double crowns $DC(k,d)$, for which
+we prove a parity dichotomy:
 $DC(k,d)$ with two pendant pairs at distance $d$ is freely reachable
 from its spanning trees when $d$ is odd, and cycle-critical when $d$
 is even (solvability proved for all $k\equiv 0 \pmod 4$; criticality
 reduced to, and following from, a caterpillar lemma verified at all
-positions through spine length $20$). Finally we prove that all
-interaction in a
+positions through spine length $20$). We show that the number of pegs
+a cycle edge can rescue is unbounded --- the triangle with $q$
+pendants at each vertex is solvable yet all its spanning trees strand
+$\Theta(q)$ pegs --- refuting a bound the small-graph data had
+suggested. Finally we prove that all interaction in a
 crown game is bounded by constants independent of $k$, measure the
 Myhill--Nerode complexity of the reachable configuration spaces, and
 explain why the eventual periodicity of $k\mapsto$ ``$C(k;p)$ is
@@ -135,11 +138,12 @@ activity in a crown game is bounded by constants independent of $k$
 solvable unicyclic graph is cycle-critical if every spanning tree is
 unsolvable: the cycle edge is load-bearing. The atlas contains
 $1{,}839$ examples on $n\le 14$ vertices; the smallest is $C_4$ with
-one pendant on each of two opposite vertices. Exactly two tiers
-occur: for $1{,}810$ graphs the best spanning tree strands two pegs,
-for the remaining $29$ it strands three. We conjecture this is
-sharp in general: one extra edge rescues at most two pegs
-(Conjecture~\ref{conj:rescue}).
+one pendant on each of two opposite vertices. Up to $n=14$ they fall
+in two tiers (the best spanning tree strands two pegs in $1{,}810$
+cases and three in the remaining $29$), but this does not persist:
+the rescue $\min_T\ps(T)-\ps(G)$ is in fact unbounded
+(Theorem~\ref{thm:rescue}), so cycle-critical graphs have arbitrarily
+many tiers.
 \item \textbf{Double crowns and a parity dichotomy}
 (Section~\ref{sec:dc}). $DC(k,d)$ is a $k$-cycle with two pendants
 at $x_0$ and two at $x_d$. For odd $d$ we prove $DC(k,d)$ solvable
@@ -481,7 +485,8 @@ $C_4$ with one pendant on each of two opposite vertices. For
 $1{,}810$ of them the best spanning tree strands exactly two pegs;
 for the remaining $29$, every spanning tree strands at least three.
 No solvable unicyclic graph on $n\le14$ vertices has all spanning
-trees stranding four or more.
+trees stranding four or more, though larger ones do
+(Theorem~\ref{thm:rescue}).
 \end{proposition}
 
 Since a play that never uses a jump path through $e$ is verbatim a
@@ -492,23 +497,14 @@ sit at the endpoints of the deleted edge (5 cases of 28 at
 $n\le10$), and there are critical graphs all of whose solutions
 have zero net flow around the cycle (gross usage does not cancel;
 net usage can). Criticality is a statement about gross traversal,
-and its characterization is open. The data supports a clean bound.
+and its characterization is open.
 
-\begin{conjecture}[Rescue bound]\label{conj:rescue}
-For every unicyclic $G$, writing $R(G)=\min_T \ps(T)-\ps(G)$ over
-spanning trees $T$, one has $R(G)\le 2$: one extra edge rescues at
-most two pegs.
-\end{conjecture}
-
-This is machine-verified for every unicyclic graph on $n\le12$
-vertices, solvable or not: $R=0$ in $7437$ cases, $R=1$ in $421$, and
-$R=2$ in exactly $13$, so the bound is both true and tight. The
-extremal cases are essentially unique in form: twelve of the thirteen
-are triangles carrying a heavy pendant cluster at one corner, and the
-last is a $C_8$ with two pendant pairs. The triangle is $K_3$, whose
-third edge lets the loaded corner be refilled across the clique, worth
-two pegs when a large cluster is cleared; this is the natural
-candidate for a worst case.
+We turn to the \emph{size} of the rescue,
+$R(G)=\min_T\ps(T)-\ps(G)$ (the minimum over spanning trees). On
+$n\le 12$ it is small --- $R=0$ in $7437$ cases, $1$ in $421$, $2$ in
+$13$, never more --- which tempts one to conjecture a universal
+bound. That temptation is wrong (Theorem~\ref{thm:rescue} below); but
+one inequality is clean and worth recording first.
 
 One direction is provable and pins down where the difficulty lies.
 Fix an optimal play $P$ of $G$ (ending with $r=\ps(G)$ pegs) and a
@@ -533,16 +529,45 @@ must be one that uses $e$; if none does, there are no skips.
 
 In particular a positive rescue forces every optimal play to traverse
 every cycle edge --- for solvable $G$, exactly cycle-criticality.
-This does \emph{not} prove $R\le 2$, and instructively so: the greedy
-replay of a \emph{fixed} optimal play can cascade, and we have
-measured $\min_e s_e$ as large as $6$ while the true $R$ stayed at
-most $2$. The tree recovers the lost pegs with a play of its own that
-the inherited one does not see. So the honest state of the bound is
-this: verified and tight through $n=12$, reduced by
-Lemma~\ref{lem:skip} to controlling skips, but not closed, because
-inheritance from a single play is too lossy and the tree's native
-optimum must be used instead. We regard it as the most accessible of
-the paper's open problems, but it is open.
+This bounds $R$ by skips but does not bound it absolutely --- and, it
+turns out, nothing does. Let $T(q)$ be the triangle with $q$ pendants
+at each of its three vertices.
+
+\begin{theorem}[Rescue is unbounded]\label{thm:rescue}
+$\ps(T(q))=1$ for every $q$, while every spanning tree of $T(q)$ has
+$\ps\ge q-3$. Hence $R(T(q))\ge q-4\to\infty$: no bound $R\le B$
+holds. The smallest explicit counterexample to $R\le 2$ is $T(5)$
+($n=18$, $\ps=1$, every tree $\ps=4$, so $R=3$).
+\end{theorem}
+
+\begin{proof}
+Solvability: with the hole at a vertex $a$, the jumps
+$b_q\!>\!b\!>\!a$, $c_q\!>\!c\!>\!b$, $a_q\!>\!a\!>\!c$ delete one
+pendant from each vertex and restore the triangle to its initial
+state, reducing $T(q)$ to $T(q-1)$; the induction ends at
+$T(0)=K_3$, solved by $b\!>\!c\!>\!a$. Lower bound: a spanning tree
+deletes a triangle edge, say $ab$, leaving the bipartite spine
+$a\!-\!c\!-\!b$ with $q$ pendants at each vertex. Colour vertices by
+the parity of their distance to $c$: the even class
+$\{c\}\cup\{a\text{- and }b\text{-pendants}\}$ has $1+2q$ vertices,
+the odd class $\{a,b\}\cup\{c\text{-pendants}\}$ has $2+q$. Every jump
+lowers the peg count of its middle vertex's colour by exactly one;
+the only non-leaf vertices, hence the only possible middles, are
+$a,b,c$, of which just $c$ is even. So even-class pegs disappear only
+through $c$-middle jumps, each of which empties $c$, and a peg returns
+to $c$ only through an $a$- or $b$-middle jump. Counting gives
+(even removed) $\le 1+$ (odd removed), which forces at least $q-3$
+pegs in any terminal state. The triangle itself escapes this ledger
+because an odd cycle is not bipartite.
+\end{proof}
+
+So the cycle edge is worth $\Theta(q)$ pegs, not a constant, and the
+apparent bound on $n\le 12$ was an artefact of range. Two corrections
+follow. First, $T(q)$ for $q\ge 3$ is a second infinite family of
+cycle-critical graphs (every tree strands $q-1\ge 2$), triangle-based
+rather than even-cycle-based. Second, the strand-count of a
+cycle-critical graph is unbounded: the two tiers seen up to $n=14$
+(Proposition~\ref{prop:critical}) do not continue.
 
 The mechanism behind criticality and the caterpillar necessity is the
 same, and can be stated cleanly.
@@ -808,10 +833,11 @@ regard closing either as the main problem left open by this work.
 
 \begin{enumerate}
 \item Prove Conjecture~\ref{conj:periodic}, even for $p=3$.
-\item Characterize the cycle-critical unicyclic graphs; failing
-that, prove the Rescue Bound (Conjecture~\ref{conj:rescue}), or its
-natural extension $\min_T\ps(T)\le\ps(G)+2c$ for graphs with cycle
-rank $c$.
+\item Characterize the cycle-critical unicyclic graphs. Theorem~\ref{thm:rescue}
+shows the rescue $\min_T\ps(T)-\ps(G)$ is unbounded, so no constant
+bound holds; what graph parameter controls it? For $T(q)$ the rescue
+is $\Theta(q)$, half the maximum pendant load, which suggests a bound
+in terms of the largest cluster relative to the cycle.
 \item Extend Proposition~\ref{prop:catnec} to all even spine lengths:
 an even-spine double-cluster caterpillar with even separation is
 unsolvable. By Theorem~\ref{thm:evencrit} this closes the criticality
