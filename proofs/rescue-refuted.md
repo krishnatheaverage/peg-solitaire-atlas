@@ -82,3 +82,28 @@ edge is worth $\Theta(q)$ pegs, not a constant.
 
 Lesson (again): verify conjectures well past the range that first
 suggested them.
+
+## Follow-up (2026-07-04): what controls the rescue
+
+**Non-uniform triangles T(a,b,c)** (a>=b>=c pendants). The rescue is
+governed by cluster BALANCE, not size. The minimum spanning tree is
+obtained by making the LARGEST cluster the spine middle (delete the
+opposite edge); the bipartite ledger then strands ~ (b+c) - a - const
+pegs. So:
+  - balanced clusters (a~b~c=q): min tree ps ~ q, R ~ q  -> unbounded;
+  - one dominant cluster (a >> b,c): b+c-a small/negative, R bounded
+    (e.g. T(a,1,1) has R = min(a-2, 2), capped at 2).
+The maximally balanced T(q,q,q) is the extremal case. Verified over
+all a>=b>=c with 3+a+b+c<=22. This answers the "what parameter
+controls R" question: the excess (b+c-a) of the two smaller clusters
+over the largest.
+
+**Uniform cycles C_k(q)** (q pendants at every vertex of C_k). Only
+the TRIANGLE rescues: R(C_3(q)) = q-2 (unbounded), but R(C_k(q)) = 0
+for k = 4,5,6,7 (all tested q). Reason: deleting a triangle edge
+leaves the length-3 caterpillar P_3(q,q,q) where the single even-class
+non-leaf (the middle) is a bottleneck; for k>=4 the spanning
+caterpillar P_k(q,...,q) has >=2 even non-leaves, no bottleneck, and
+is solvable, so R=0. (Being an odd cycle is NOT sufficient: C_5, C_7
+are odd yet rescue 0. The triangle is special as the shortest cycle /
+K_3, not merely as an odd cycle.)
