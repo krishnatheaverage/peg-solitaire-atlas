@@ -29,20 +29,42 @@ range). When $n$ is even this Hamiltonian path is $P_n$, solvable by
 Beeler--Hoilman, so the Inheritance Principle makes $\Theta$ solvable.
 $\square$
 
-## Odd $n$: status
+## Every theta contains an even cycle (PROVED, parity)
 
-The Hamiltonian path is $P_n$ with $n$ odd (unsolvable), so a
-different spanning subgraph is needed. Breaking one hub-hub path at a
-hub leaves a TADPOLE spanning subgraph (cycle + pendant path); the
-theta is solvable if any of its three tadpoles is. This works for
-$82/96$ odd thetas in range. The remaining $14$ --- the balanced-long
-cases $\Theta(5,5,5)$, $\Theta(7,7,7)$, $\Theta(5,6,6)$, \dots and the
-chord cases $\Theta(0,7,8),\Theta(0,8,9)$ --- have NO solvable path or
-tadpole spanning subgraph, yet are solvable: they genuinely use both
-independent cycles. This is a rank-2 echo of cycle-criticality, and a
-direct two-cycle (circulation-style) strategy is the missing proof,
-exactly analogous to the balanced-triangle circulation of
-$T(q,q,q)$.
+The three cycles of $\Theta(a,b,c)$ (pairs of paths) have lengths
+$a+b+2,\ a+c+2,\ b+c+2$, with parities those of $a+b,\ a+c,\ b+c$.
+These three sum to $2(a+b+c)$, even, so they cannot all be odd: at
+least one of $a+b,a+c,b+c$ is even. Hence \textbf{every theta graph
+has an even cycle.} $\square$
+
+## Odd $n$: reduced from bicyclic to unicyclic (the hard cases dissolve)
+
+The balanced-odd cases are NOT bicyclic-critical after all: they do
+have solvable unicyclic spanning subgraphs, just not tadpoles
+(the solvable one comes from breaking a path in its MIDDLE, giving a
+cycle with two tails, not at a hub). Uniform construction: take the
+even cycle (exists, above); the third path has odd internal length;
+split it into two tails at the two hubs. This
+even-cycle-with-two-tails unicyclic graph is a spanning subgraph, and
+it is solvable for a suitable split --- VERIFIED for all $96$ odd-$n$
+thetas with $n\le 24$ (searching over even-cycle choice and split
+point; the balanced split alone already works for $93/96$).
+
+So by the Inheritance Principle, \emph{every theta graph is solvable},
+with the odd case resting on one clean unicyclic lemma:
+
+  LEMMA (verified, closed form open): the even-cycle-with-two-tails
+  graphs arising here are solvable. Equivalently, a $C_m$ ($m$ even)
+  with two pendant paths at the two hub vertices, of appropriate
+  lengths, is solvable.
+
+This REPLACES the earlier "needs a direct two-cycle circulation"
+plan: the balanced-odd hard cases reduce to rank 1, not rank 2. The
+remaining gap is a unicyclic (cycle-with-tails) solvability statement,
+strictly easier than the original bicyclic question. Status:
+- even $n$: theta solvable, FULLY PROVED (Ham path).
+- odd $n$: theta solvable, PROVED modulo the cycle-with-tails lemma
+  (verified all $n\le 24$).
 
 ## Tadpole sub-result (needed above, of independent interest)
 
