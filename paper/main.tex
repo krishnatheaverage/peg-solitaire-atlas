@@ -64,17 +64,26 @@ reproducible from the accompanying repository.
 \section{Introduction}
 
 Peg solitaire on graphs was introduced by Beeler and Hoilman
-\cite{BH11}. Pegs occupy all vertices of a connected graph $G$ except
-one, the starting hole; a move takes a path $u\,v\,w$ with pegs on
-$u,v$ and a hole on $w$, jumps the peg from $u$ to $w$, and removes
-the peg on $v$. The graph is \emph{solvable} if from some starting
-hole a sequence of jumps leaves a single peg, and \emph{freely
-solvable} if this works from every hole. The central open problem of
-the area, posed in \cite{BH11} and repeated in the survey
-\cite{dWK23}, is to characterize the solvable trees; progress has
-come one family at a time, through double stars \cite{BH12}, trees of
-diameter four \cite{BW15}, caterpillars \cite{BGH17}, and banana
-trees \cite{dWK20}, among others.
+\cite{BH11}, lifting the classical board game \cite{Beasley,BCG,Bell}
+to arbitrary connected graphs. Pegs occupy all vertices of a
+connected graph $G$ except one, the starting hole; a move takes a
+path $u\,v\,w$ with pegs on $u,v$ and a hole on $w$, jumps the peg
+from $u$ to $w$, and removes the peg on $v$. The graph is
+\emph{solvable} if from some starting hole a sequence of jumps leaves
+a single peg, and \emph{freely solvable} if this works from every
+hole. The central open problem of the area, posed in \cite{BH11} and
+repeated in the survey \cite{dWK23}, is to characterize the solvable
+trees; progress has come one family at a time, through the census of
+graphs on at most seven vertices \cite{BG12}, double stars
+\cite{BH12}, trees of diameter four \cite{BW15}, caterpillars
+\cite{BGH17}, and banana trees \cite{dWK20}, among others. A parallel
+line studies graph operations and modified rules: Cartesian
+\cite{KdWcart} and corona \cite{KdWcorona} products, line graphs
+\cite{KdWline}, reversible \cite{ES} and merging \cite{EW} moves,
+double-jump solitaire \cite{BGdj}, the fool's solitaire number and
+other extremal questions \cite{BR12,BGext}, graphs of large maximum
+degree \cite{Mat}, pagoda-function certificates \cite{Kpagoda}, and
+an infinite-board analogue tied to Conway's soldiers \cite{Vito}.
 
 This paper approaches the subject from the unicyclic side, where, to
 our knowledge, no systematic study existed. Two decisions shaped the
@@ -682,9 +691,12 @@ caterpillar. Granting Proposition~\ref{prop:catnec} at spine length
 $k$, all spanning trees are unsolvable, so $DC(k,d)$, once solvable,
 is cycle-critical. This is unconditional for even $k\le 20$, and
 verified directly through $k=24$ for
-$(k,d)\in\{(8,4),(12,4),(12,6),(16,8),(20,4),(20,10),(22,6),
-(22,10),(24,8),(24,12)\}$. For $d$ odd, $DC(k,d)$ is freely solvable
-with solvable spanning trees in every tested case.
+\[
+(k,d)\in\{(8,4),(12,4),(12,6),(16,8),(20,4),(20,10),(22,6),(22,10),
+(24,8),(24,12)\}.
+\]
+For $d$ odd, $DC(k,d)$ is freely solvable with solvable spanning trees
+in every tested case.
 \end{theorem}
 
 The dichotomy is therefore a theorem in a precise sense: the odd case
@@ -800,8 +812,8 @@ an even-spine double-cluster caterpillar with even separation is
 unsolvable. By Theorem~\ref{thm:evencrit} this closes the criticality
 half of the double crown dichotomy. The obstruction is not the
 bipartite two-colouring resource count, which we checked gives no
-separation-parity constraint; a pagoda-type function is the natural
-candidate.
+separation-parity constraint; a pagoda function in the sense of
+\cite{Kpagoda} is the natural candidate.
 \item Explain the Distance-$\{3,6\}$ law
 (Proposition~\ref{prop:distlaw}) from the runway law of
 Section~\ref{sec:caterpillar}.
@@ -820,7 +832,7 @@ witness plays quoted above are available in the repository
 accompanying this paper. Every finite claim marked machine-verified
 can be reproduced from a cold start in under an hour on a laptop.
 
-\begin{thebibliography}{9}
+\begin{thebibliography}{99}
 
 \bibitem{BH11} R.~A. Beeler and D.~P. Hoilman, Peg solitaire on
 graphs, \emph{Discrete Math.} 311 (2011), 2198--2202.
@@ -852,6 +864,56 @@ Cambridge Univ. Press, 2002, 341--350.
 \bibitem{GuyNowakowski} R.~K. Guy and R.~J. Nowakowski, Unsolved
 problems in combinatorial games, in \emph{Games of No Chance}, MSRI
 Publ., Cambridge Univ. Press (various editions).
+
+\bibitem{Beasley} J.~D. Beasley, \emph{The Ins and Outs of Peg
+Solitaire}, Oxford University Press, 1985.
+
+\bibitem{BCG} E.~R. Berlekamp, J.~H. Conway and R.~K. Guy,
+\emph{Winning Ways for Your Mathematical Plays}, 2nd ed., A~K Peters,
+2001--2004.
+
+\bibitem{Bell} G.~I. Bell, Solving triangular peg solitaire,
+\emph{J. Integer Seq.} 11 (2008), Article 08.4.8.
+
+\bibitem{BG12} R.~A. Beeler and A.~D. Gray, Peg solitaire on graphs
+with seven vertices or less, \emph{Congr. Numer.} 211 (2012),
+151--159.
+
+\bibitem{BR12} R.~A. Beeler and T.~K. Rodriguez, Fool's solitaire on
+graphs, \emph{Integers} 12 (2012), \#G3.
+
+\bibitem{BGext} R.~A. Beeler and A.~D. Gray, Extremal results for peg
+solitaire on graphs, \emph{Bull. Inst. Combin. Appl.} 77 (2016),
+30--42.
+
+\bibitem{BGdj} R.~A. Beeler and A.~D. Gray, Double jump peg solitaire
+on graphs, \emph{Congr. Numer.} (2021).
+
+\bibitem{KdWcart} M.~Kreh and J.-H. de Wiljes, Peg solitaire on
+Cartesian products of graphs, \emph{Graphs Combin.} 37 (2021),
+1699--1712.
+
+\bibitem{KdWcorona} M.~Kreh and J.-H. de Wiljes, Peg solitaire on
+corona products, \emph{Bull. Inst. Combin. Appl.} 96 (2022),
+107--118.
+
+\bibitem{KdWline} M.~Kreh and J.-H. de Wiljes, Peg solitaire on line
+graphs, \emph{Trans. Comb.} 13 (2024), no.~3, 257--277.
+
+\bibitem{Kpagoda} M.~Kreh, Pagoda functions for peg solitaire on
+graphs, preprint (2024).
+
+\bibitem{ES} J.~Engbers and C.~Stocker, Reversible peg solitaire on
+graphs, \emph{Discrete Math.} 338 (2015), 2014--2019.
+
+\bibitem{EW} J.~Engbers and R.~Weber, Merging peg solitaire on graphs,
+\emph{Involve} 11 (2018), 53--66.
+
+\bibitem{Mat} N.~Matsumoto, Peg solitaire on graphs with large maximum
+degree, \emph{Asian-Eur. J. Math.} 15 (2022), 2250177.
+
+\bibitem{Vito} V.~Vito, Peg solitaire and Conway's soldiers on
+infinite graphs, arXiv:2109.11128 (2021).
 
 \end{thebibliography}
 
