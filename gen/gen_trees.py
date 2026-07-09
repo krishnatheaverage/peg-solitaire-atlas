@@ -1,17 +1,11 @@
-"""Generate all non-isomorphic free trees on n vertices (WROM via networkx).
-
-Output format, one tree per line:
-    n u1 v1 u2 v2 ... u_{n-1} v_{n-1}
-Vertices are 0-indexed.
-
+"""Generate all non-isomorphic free trees on n vertices.
 Usage: python3 gen_trees.py <n> [outfile]
 """
 import sys
-
 import networkx as nx
 
 
-def main() -> None:
+def main():
     n = int(sys.argv[1])
     out = open(sys.argv[2], "w") if len(sys.argv) > 2 else sys.stdout
     count = 0

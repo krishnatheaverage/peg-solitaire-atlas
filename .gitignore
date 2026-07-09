@@ -1,5 +1,7 @@
 data/trees_*.txt
 *.o
 solver
+crown_sym
+dc_sym
 __pycache__/
 data/spanning_test.txt

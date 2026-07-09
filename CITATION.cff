@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software or the accompanying data, please cite it using the metadata below, together with the accompanying paper."
+title: "peg-solitaire-atlas: solvers, generators, and atlases for peg solitaire on unicyclic graphs"
+authors:
+  - family-names: "Harish"
+    given-names: "Krishna"
+    affiliation: "Elkins High School, Missouri City, Texas, USA"
+version: "1.0.0"
+date-released: "2026-07-09"
+license: MIT
+repository-code: "https://github.com/krishnatheaverage/peg-solitaire-atlas"
+url: "https://github.com/krishnatheaverage/peg-solitaire-atlas"
+keywords:
+  - "peg solitaire"
+  - "unicyclic graphs"
+  - "combinatorial games"
+  - "graph theory"
+  - "combinatorics"
+abstract: >-
+  Exact peg-solitaire solvers, non-isomorphic tree and unicyclic-graph
+  generators, verification scripts against published theorems, and
+  exhaustive solvability atlases (all trees on up to 18 vertices and
+  all unicyclic graphs on up to 14 vertices). Supporting code and data
+  for the paper "Peg solitaire on unicyclic graphs: crowns,
+  cycle-critical graphs, and two atlases."

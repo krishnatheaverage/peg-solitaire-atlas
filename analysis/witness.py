@@ -1,11 +1,7 @@
-"""Extract an explicit winning jump sequence for a graph + starting hole.
-
-A jump is (u, v, w): peg at u jumps over v into hole w; u,v lose pegs,
-w gains one. Prints the sequence reaching a single peg, or UNSOLVABLE.
-
+"""Extract a winning jump sequence for a graph + starting hole.
 Usage:
   python3 analysis/witness.py "<n> <edge list>" <hole>
-  python3 analysis/witness.py crown <k> <p> [hole]   # C(k;p) helper
+  python3 analysis/witness.py crown <k> <p> [hole]
 """
 import sys
 

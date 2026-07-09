@@ -1,13 +1,5 @@
-"""Structured solver probes of the crown family (C_k + hanging pieces).
-
-Reproduces the probe results recorded in NOTES.md:
-  1. single  — p*(k): max pendants at one vertex, k = 3..27
-  2. pair    — two loaded vertices at distance d
-  3. subtree — hanging small rooted trees + j extra pendants (load model)
-  4. helper  — chain2 helper ceiling / stacking / placement
-
+"""Structured solver probes for the crown family C(k;p) and variants.
 Usage: python3 analysis/probe_crowns.py <single|pair|subtree|helper>
-Run from the repo root (needs ./solver and gen/ on sys.path).
 """
 import subprocess
 import sys
@@ -23,8 +15,6 @@ def solve_all(lines):
 
 
 def crown(k, loads=None, chains=None, subtrees=None):
-    """C_k with pendant loads {v: count}, chains [(v, len)] and hanging
-    rooted subtrees [(v, code)]."""
     edges = [(i, (i + 1) % k) for i in range(k)]
     nid = k
     for v, c in (loads or {}).items():

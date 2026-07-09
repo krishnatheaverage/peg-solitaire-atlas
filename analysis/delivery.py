@@ -1,31 +1,12 @@
-"""Delivery numbers of paths: the crux quantity for crown necessity.
-
-Model: path cells 1..m (all pegged unless a hole is specified) plus a
-target cell 0 adjacent to cell 1. Jumps happen only along the line
-(cells 0..m). The target cell is special: whenever it holds a peg, an
-external process may remove it at any time (this models x_0's peg
-being consumed by pendant events A/B/C/D/E). A DELIVERY is a jump
-2 > 1 > 0.
-
-D(m)      = max deliveries, path starts full.
-D_hole(m) = max over starting hole positions h in 1..m of max
-            deliveries when cell h starts empty.
-D2(m)     = two-sided version: targets 0 and m+1 at both ends, path
-            full; counts total deliveries into either target.
-
-Exact search over states (peg bitmask on cells 1..m, target assumed
-drained immediately - draining immediately is optimal for counting
-deliveries only, EXCEPT the target peg can also jump back into the
-path (D-type moves). To stay exact we keep the target's peg state in
-the search and allow: keep it, drain it (external), or jump it back
-0 > 1 > 2. Memoized max-delivery search.
+"""Delivery numbers of paths: max pegs a fully-pegged path can deliver
+to an adjacent target cell. D(m), D_hole(m), D2(m) (two-sided).
+Usage: python3 analysis/delivery.py [max_m]
 """
 import sys
 from functools import lru_cache
 
 
 def delivery(m, holes=(), two_sided=False):
-    # cells: 0 = left target, 1..m path, m+1 = right target (if two_sided)
     n = m + (2 if two_sided else 1)
     targets = {0, m + 1} if two_sided else {0}
     start = 0
@@ -44,7 +25,6 @@ def delivery(m, holes=(), two_sided=False):
     @lru_cache(maxsize=None)
     def best(state):
         res = 0
-        # external drain of a pegged target
         for t in targets:
             if (state >> t) & 1:
                 res = max(res, best(state & ~(1 << t)))

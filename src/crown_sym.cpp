@@ -1,18 +1,16 @@
-// Pendant-symmetric exact solvability for crowns C(k;p).
-// State: cycle bitmask (k bits) | pendant count j << k. Memoized DFS.
-// Usage: crown_sym <k> <p>   -> prints solvable start holes or UNSOLVABLE.
+// Pendant-symmetric solvability for crowns C(k;p).
+// Usage: crown_sym <k> <p>
 
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
 #include <unordered_map>
 #include <vector>
+#include <array>
 
 static int K, P;
 static std::unordered_map<uint64_t, bool> memo;
-static std::vector<std::array<int, 3>> jumps;  // cycle jumps (u,m,w)
-
-#include <array>
+static std::vector<std::array<int, 3>> jumps;
 
 static bool reach(uint32_t mask, int j) {
     int pegs = __builtin_popcount(mask) + j;
@@ -20,7 +18,7 @@ static bool reach(uint32_t mask, int j) {
     uint64_t key = (uint64_t)mask | ((uint64_t)j << K);
     auto it = memo.find(key);
     if (it != memo.end()) return it->second;
-    memo.emplace(key, false);  // cycle guard (game is a DAG; harmless)
+    memo.emplace(key, false);
     bool ok = false;
     for (auto& t : jumps) {
         int u = t[0], m = t[1], w = t[2];
@@ -31,16 +29,19 @@ static bool reach(uint32_t mask, int j) {
             }
         }
     }
-    if (!ok && (mask & 1)) {  // x_0 pegged: pendant moves
+    if (!ok && (mask & 1)) {
         int g1 = 1, g2 = K - 1;
-        if (j >= 1) {  // A: pendant exits into empty gate
+        // A: pendant exits into empty gate
+        if (j >= 1) {
             for (int g : {g1, g2})
                 if (!(mask >> g & 1) &&
                     reach((mask & ~1u) | (1u << g), j - 1)) { ok = true; break; }
         }
-        if (!ok && j >= 1 && P - j >= 1)  // B
-            ok = reach(mask & ~1u, j);  // B moves a pendant peg; count unchanged
-        if (!ok && P - j >= 1) {  // C: gate feeds pendant
+        // B: pendant over x_0 into empty pendant slot (count unchanged)
+        if (!ok && j >= 1 && P - j >= 1)
+            ok = reach(mask & ~1u, j);
+        // C: gate feeds pendant
+        if (!ok && P - j >= 1) {
             for (int g : {g1, g2})
                 if ((mask >> g & 1) &&
                     reach((mask & ~1u) & ~(1u << g), j + 1)) { ok = true; break; }

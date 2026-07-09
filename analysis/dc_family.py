@@ -1,19 +1,5 @@
-"""The k -> k+4 play family for DC(k, k/2), hole x_3  (even-side gadget).
-
-Generates the parametrized solving play inferred from the k=16 and
-k=20 witnesses and validates it by exact simulation. Phases (d = k/2):
-
-  A: 5>4>3  2>3>4  0>1>2
-  B: pairs (2j+7 > 2j+6 > 2j+5), (2j+4 > 2j+5 > 2j+6)
-     for j = 0 .. (d-8)/2                      [right arc, grows +1 pair per +4... wait: per +4 in k, d grows +2, so one extra pair]
-  C: (k-2 > k-1 > 0), then (m > m+1 > m+2) descending:
-     (k-4 > k-3 > k-2), (k-6 > k-5 > k-4), ... down to (d+4 > d+5 > d+6)
-  D: q0>0>1   2>1>0   q0>0>(k-1)
-  E: (k-1 > k-2 > k-3), (k-3 > k-4 > k-5), ... down to landing at d+5
-  F: qd>d>(d-1)  (d+2)>(d+1)>d  qd>d>(d+1)  (d-2)>(d-1)>d
-     d>(d+1)>(d+2)  (d+2)>(d+3)>(d+4)  (d+5)>(d+4)>(d+3)
-
-Usage: python3 analysis/dc_family.py <k> [<k> ...]
+"""Parametrized solving play for DC(k, k/2), hole x_3, k = 4t >= 16.
+Validates by exact simulation. Usage: python3 analysis/dc_family.py <k> [<k> ...]
 """
 import sys
 
@@ -43,7 +29,7 @@ def family(k):
 def simulate(k, moves, hole=3):
     d = k // 2
     pegs = set(range(k)) - {hole}
-    q = {0: 2, d: 2}  # pendant counts
+    q = {0: 2, d: 2}
 
     def adj(a, b):
         return (b - a) % k in (1, k - 1)

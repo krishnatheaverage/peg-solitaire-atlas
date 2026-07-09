@@ -1,7 +1,5 @@
-// Two-cluster pendant-symmetric solvability for DC(k,d):
-// C_k with p0 pendants at x_0 and pd pendants at x_d.
-// State: cycle mask (k bits) | j0 << k | jd << (k+4). Memoized DFS.
-// Usage: dc_sym <k> <d> <p0> <pd>  -> prints solvable holes.
+// Two-cluster pendant-symmetric solvability for DC(k,d).
+// Usage: dc_sym <k> <d> <p0> <pd>
 
 #include <cstdint>
 #include <cstdio>
@@ -30,8 +28,6 @@ static bool reach(uint64_t mask, int j0, int jd) {
                       j0, jd)) { ok = true; break; }
         }
     }
-    // cluster moves at v with (count j, cap p): A exits, B shuffles
-    // (count unchanged, consumes v's peg), C feeds a pendant.
     struct CL { int v, j, p; };
     CL cls[2] = {{0, j0, P0}, {D, jd, PD}};
     for (int ci = 0; ci < 2 && !ok; ++ci) {
@@ -39,7 +35,7 @@ static bool reach(uint64_t mask, int j0, int jd) {
         if (!(mask >> v & 1)) continue;
         int g1 = (v + 1) % K, g2 = (v + K - 1) % K;
         int nj0, njd;
-        if (j >= 1) {  // A
+        if (j >= 1) {
             for (int g : {g1, g2}) {
                 if (!(mask >> g & 1)) {
                     nj0 = j0 - (ci == 0); njd = jd - (ci == 1);
@@ -48,9 +44,9 @@ static bool reach(uint64_t mask, int j0, int jd) {
                 }
             }
         }
-        if (!ok && j >= 1 && p - j >= 1)  // B: count unchanged
+        if (!ok && j >= 1 && p - j >= 1)
             ok = reach(mask & ~(1ull << v), j0, jd);
-        if (!ok && p - j >= 1) {  // C
+        if (!ok && p - j >= 1) {
             for (int g : {g1, g2}) {
                 if (mask >> g & 1) {
                     nj0 = j0 + (ci == 0); njd = jd + (ci == 1);
