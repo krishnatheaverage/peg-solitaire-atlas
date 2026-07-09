@@ -1,5 +1,7 @@
 # peg-solitaire-atlas
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21285775.svg)](https://doi.org/10.5281/zenodo.21285775)
+
 Exact solvers, graph generators, verification scripts, and exhaustive
 solvability atlases for **peg solitaire on graphs** (in the sense of
 Beeler and Hoilman), focused on trees and unicyclic graphs.
@@ -46,7 +48,9 @@ g++ -O2 -o dc_sym   src/dc_sym.cpp
 ## Citation
 
 If you use this repository, please cite the accompanying paper and the
-archived release (see `CITATION.cff` and the Zenodo DOI).
+archived release: Zenodo DOI
+[10.5281/zenodo.21285776](https://doi.org/10.5281/zenodo.21285776)
+(v1.0.0). See `CITATION.cff` for full metadata.
 
 ## License
 

@@ -10,6 +10,13 @@ date-released: "2026-07-09"
 license: MIT
 repository-code: "https://github.com/krishnatheaverage/peg-solitaire-atlas"
 url: "https://github.com/krishnatheaverage/peg-solitaire-atlas"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.21285775"
+    description: "Concept DOI (all versions)"
+  - type: doi
+    value: "10.5281/zenodo.21285776"
+    description: "Version v1.0.0"
 keywords:
   - "peg solitaire"
   - "unicyclic graphs"
